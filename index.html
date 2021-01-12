@@ -15,7 +15,7 @@
         <h1 class="text-muted text-center my-3">Samip Weather</h1>
         <form class="change-location my-2 text-center text-muted">
             <label for="city">Enter a location for weather information</label>
-            <input type="text" name="city" class="form-control p-4">
+            <input type="text" name="city" class="form-control p-4" placeholder="Enter a city">
         </form>
         <div class="card shadow-lg rounded d-none">
             <img src="https://via.placeholder.com/400x300" class="time card-img-top">
@@ -25,9 +25,9 @@
             <div class="text-muted text-uppercase text-center details">
                 <h5 class="my-3">City Name</h5>
                 <div class="my-3">Weather Condition</div>
-                <div class="display-4 my-4">
-                    <span>temp</span>
-                    <span>&deg;C</span>
+                <div class="display-4 my-4 temperature">
+                    <span id="tempDigit">temp</span>
+                    <span id="tempUnit">&deg;C</span>
                 </div>
             </div>
         </div>

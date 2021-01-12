@@ -1,27 +1,11 @@
-const key = "HqtGWbay3uW7BngNXLelS3bc85Obb1bZ";
+let key = "HqtGWbay3uW7BngNXLelS3bc85Obb1bZ";
+key = "6e13b045a89cdb9342dfa6718ed3d451";
 
 // get weather information
-const getWeather = async (id) => {
-  const base = "http://dataservice.accuweather.com/currentconditions/v1/";
-  const query = `${id}?apikey=${key}`;
+const getWeather = async (city) => {
+  base = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
 
-  const response = await fetch(base + query);
+  const response = await fetch(base);
   const data = await response.json();
-  return data[0]; //first item of the list is the most appropriate result
+  return data;
 };
-
-//get city information
-const getCity = async (city) => {
-  const base = "http://dataservice.accuweather.com/locations/v1/cities/search";
-  const query = `?apikey=${key}&q=${city}`;
-
-  const response = await fetch(base + query);
-  const data = await response.json();
-
-  return data[0];
-};
-
-// getCity("manchester")
-//   .then((data) => getWeather(data.Key))
-//   .then((data) => console.log(data))
-//   .catch((err) => console.log(err));

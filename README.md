@@ -1,2 +1,3 @@
 # weatherApp
-Weather App using Accuweather API 
+
+Weather App using OpenWeather API

@@ -12,4 +12,10 @@ body {
   border-radius: 50%;
   width: 100px;
   margin-bottom: -50px;
+  background-color: rgb(235, 176, 235) !important;
+}
+
+.temperature {
+  cursor: pointer;
+  user-select: none;
 }
