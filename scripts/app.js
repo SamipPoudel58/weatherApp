@@ -1,11 +1,12 @@
-const cityForm = document.querySelector("form");
-const card = document.querySelector(".card");
-const details = document.querySelector(".details");
-const time = document.querySelector("img.time");
-const icon = document.querySelector(".icon img");
-const temperature = document.querySelector(".temperature");
+const body = document.querySelector("body");
+const container = document.querySelector(".container");
+const city = document.querySelector(".city");
+const condition = document.querySelector(".condition");
 const tempDigit = document.getElementById("tempDigit");
-const tempUnit = document.getElementById("tempUnit");
+const iconBox = document.querySelector(".icon");
+const icon = document.querySelector(".icon img");
+const searchbar = document.querySelector(".searchbar");
+const temperature = document.querySelector(".temperature");
 
 let weatherInfo = {
   defaultUnit: "celsius",
@@ -23,31 +24,18 @@ const updateUI = (data) => {
   weatherInfo.description = weather[0].description;
   weatherInfo.icon = weather[0].icon;
 
-  details.innerHTML = `
-    <h5 class="my-3">${weatherInfo.city}</h5>
-    <div class="my-3">${weatherInfo.description}</div>
-    <div class="display-4 my-4 temperature">
-        <span id="tempDigit">${
-          weatherInfo.defaultUnit === "celsius"
-            ? (Number(weatherInfo.temp) - 273.15).toFixed(2)
-            : (Number(weatherInfo.temp) - 273.15).toFixed(2) * (9 / 5) + 32
-        }</span>
-        <span id="tempUnit">${
-          weatherInfo.defaultUnit === "celsius" ? "&deg;C" : "&deg;F"
-        }</span>
-    </div>
-    `;
+  city.innerText = weatherInfo.city;
+  condition.innerText = weatherInfo.description;
+  tempDigit.innerHTML =
+    weatherInfo.defaultUnit === "celsius"
+      ? Math.round(Number(weatherInfo.temp) - 273.15) + "&deg;"
+      : Math.round(
+          (Number(weatherInfo.temp) - 273.15).toFixed(2) * (9 / 5) + 32
+        ) + "&deg;";
+  icon.src = `http://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`;
 
-  // const iconSrc = `img/icons/${+weather[0].icon.substring(0, 2) + 3}.svg`;
-  const iconSrc = `http://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`;
-  icon.setAttribute("src", iconSrc);
-
-  let timeSrc =
-    weatherInfo.icon.charAt(2) === "d" ? "img/day.svg" : "img/night.svg";
-  time.setAttribute("src", timeSrc);
-
-  if (card.classList.contains("d-none")) {
-    card.classList.remove("d-none");
+  if (weatherInfo.icon.charAt(2) === "n") {
+    body.style.backgroundImage = "radial-gradient(at top, #6157a5, #28205f)";
   }
 };
 
@@ -59,11 +47,11 @@ const updateCity = async (city) => {
   return weather;
 };
 
-cityForm.addEventListener("submit", (e) => {
+searchbar.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const city = cityForm.city.value.trim();
-  cityForm.reset();
+  const city = searchbar.city.value.trim();
+  searchbar.reset();
 
   updateCity(city)
     .then((data) => updateUI(data))
@@ -71,32 +59,17 @@ cityForm.addEventListener("submit", (e) => {
 });
 console.log(weatherInfo);
 
-tempUnit.addEventListener("click", () => {
+temperature.addEventListener("click", (e) => {
+  console.log(e);
   if (weatherInfo.defaultUnit === "celsius") {
-    details.innerHTML = `
-    <h5 class="my-3">${weatherInfo.city}</h5>
-    <div class="my-3">${weatherInfo.description}</div>
-    <div class="display-4 my-4 temperature">
-        <span id="tempDigit">${
-          (Number(weatherInfo.temp) - 273.15).toFixed(2) * (9 / 5) + 32
-        }</span>
-        <span id="tempUnit">&deg;F</span>
-    </div>
-    `;
+    tempDigit.innerHTML =
+      Math.round(
+        (Number(weatherInfo.temp) - 273.15).toFixed(2) * (9 / 5) + 32
+      ) + "&deg;";
   } else {
-    details.innerHTML = `
-    <h5 class="my-3">${weatherInfo.city}</h5>
-    <div class="my-3">${weatherInfo.description}</div>
-    <div class="display-4 my-4 temperature">
-        <span id="tempDigit">${(Number(weatherInfo.temp) - 273.15).toFixed(
-          2
-        )}</span>
-        <span id="tempUnit">&deg;C</span>
-    </div>
-    `;
+    tempDigit.innerHTML =
+      Math.round((Number(weatherInfo.temp) - 273.15).toFixed(2)) + "&deg;";
   }
   weatherInfo.defaultUnit =
     weatherInfo.defaultUnit === "celsius" ? "fahrenheit" : "celsius";
-
-  console.log(weatherInfo);
 });

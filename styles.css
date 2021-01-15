@@ -1,21 +1,98 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
 body {
-  background: #eeedec;
-  letter-spacing: 0.2em;
-  font-size: 0.8em;
+  /* background-image: linear-gradient(to left top, #7560f5, #b0a3ff);
+  background-image: radial-gradient(at top, #6157a5, #28205f); */
+  background-image: radial-gradient(at top, #75bcfa, #4062df);
+  background-repeat: no-repeat;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
 }
+
 .container {
-  max-width: 400px;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
 }
-.icon {
-  position: relative;
-  top: -50px;
-  border-radius: 50%;
-  width: 100px;
-  margin-bottom: -50px;
-  background-color: rgb(235, 176, 235) !important;
+
+.searchbar {
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 1.5rem;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.searchbar input {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-size: 1.3rem;
+  color: #888888;
+  font-family: "Barlow";
+  text-align: center;
+}
+
+.city {
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.condition {
+  color: white;
+  font-family: "Barlow";
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .temperature {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
   cursor: pointer;
+}
+
+.temperature h2 {
+  font-size: 9rem;
+  font-weight: 600;
+  display: inline-block;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgba(175, 163, 255, 0.5)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.icon {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.icon img {
+  display: block;
+  max-width: 100%;
+  -webkit-user-select: none;
   user-select: none;
+  -webkit-user-drag: none;
 }

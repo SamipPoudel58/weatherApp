@@ -4,34 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="styles.css">
     <title>Weather App</title>
 </head>
 
 <body>
-    <div class="container my-3 mx-auto">
-        <h1 class="text-muted text-center my-3">Samip Weather</h1>
-        <form class="change-location my-2 text-center text-muted">
-            <label for="city">Enter a location for weather information</label>
-            <input type="text" name="city" class="form-control p-4" placeholder="Enter a city">
-        </form>
-        <div class="card shadow-lg rounded d-none">
-            <img src="https://via.placeholder.com/400x300" class="time card-img-top">
-            <div class="icon bg-light mx-auto text-center">
-                <img src="" alt="">
-            </div>
-            <div class="text-muted text-uppercase text-center details">
-                <h5 class="my-3">City Name</h5>
-                <div class="my-3">Weather Condition</div>
-                <div class="display-4 my-4 temperature">
-                    <span id="tempDigit">temp</span>
-                    <span id="tempUnit">&deg;C</span>
-                </div>
-            </div>
+    <div class="container">
+        <h2 class="city">City Name</h2>
+        <h5 class="condition">Weather Condition</h5>
+        <div class="temperature">
+            <h2 class="tempDigit" id="tempDigit">28&deg;</h2>
+        </div>
+        <div class="icon">
+            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
         </div>
     </div>
+
+    <form class="searchbar">
+        <input type="text" name="city" class="form-control p-4" placeholder="Enter a city">
+    </form>
+
+
 
     <script src="scripts/forecast.js"></script>
     <script src="scripts/app.js"></script>
