@@ -8,6 +8,19 @@ const icon = document.querySelector(".icon img");
 const searchbar = document.querySelector(".searchbar");
 const temperature = document.querySelector(".temperature");
 
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((pos) => {
+    const lon = pos.coords.longitude;
+    const lat = pos.coords.latitude;
+
+    baseURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=6e13b045a89cdb9342dfa6718ed3d451`;
+    fetch(baseURL)
+      .then((res) => res.json())
+      .then((data) => updateUI(data))
+      .catch((err) => console.error(err));
+  });
+}
+
 let weatherInfo = {
   defaultUnit: "celsius",
   city: "",
@@ -36,6 +49,8 @@ const updateUI = (data) => {
 
   if (weatherInfo.icon.charAt(2) === "n") {
     body.style.backgroundImage = "radial-gradient(at top, #6157a5, #28205f)";
+  } else if (weatherInfo.icon.charAt(2) === "d") {
+    body.style.backgroundImage = "radial-gradient(at top, #75bcfa, #4062df)";
   }
 };
 
