@@ -5,8 +5,7 @@
   padding: 0;
 }
 body {
-  
-  background-image: radial-gradient(at top, #6157a5, #28205f); */
+  /* background-image: radial-gradient(at top, #6157a5, #28205f); */
   background-image: radial-gradient(at top, #75bcfa, #4062df);
   background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
@@ -23,7 +22,8 @@ body {
 
 .searchbar {
   padding: 1rem 1.5rem;
-  background-color: #fff;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 1.5rem;
   width: 80%;
   max-width: 400px;
@@ -39,7 +39,8 @@ body {
   width: 100%;
   outline: none;
   font-size: 1.3rem;
-  color: #888888;
+  background-color: transparent;
+  color: #777777;
   font-family: "Barlow";
   text-align: center;
 }
@@ -60,11 +61,28 @@ body {
 }
 
 .temperature {
-  justify-self: center;
   display: flex;
+  flex-direction: column;
+  justify-self: center;
   align-items: center;
   margin-top: 2rem;
   cursor: pointer;
+}
+
+.tempUnit {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgba(175, 163, 255, 0.5)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .temperature h2 {

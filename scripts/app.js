@@ -7,6 +7,7 @@ const iconBox = document.querySelector(".icon");
 const icon = document.querySelector(".icon img");
 const searchbar = document.querySelector(".searchbar");
 const temperature = document.querySelector(".temperature");
+const tempUnit = document.querySelector(".tempUnit");
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((pos) => {
@@ -55,10 +56,8 @@ const updateUI = (data) => {
 };
 
 const updateCity = async (city) => {
-  // const cityDets = await getCity(city);
   const weather = await getWeather(city);
 
-  console.log(weather);
   return weather;
 };
 
@@ -72,16 +71,17 @@ searchbar.addEventListener("submit", (e) => {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
-console.log(weatherInfo);
 
 temperature.addEventListener("click", (e) => {
-  console.log(e);
+  if (tempDigit.innerHTML === "NaN") return;
   if (weatherInfo.defaultUnit === "celsius") {
+    tempUnit.innerText = "Fahrenheit";
     tempDigit.innerHTML =
       Math.round(
         (Number(weatherInfo.temp) - 273.15).toFixed(2) * (9 / 5) + 32
       ) + "&deg;";
   } else {
+    tempUnit.innerText = "Celsius";
     tempDigit.innerHTML =
       Math.round((Number(weatherInfo.temp) - 273.15).toFixed(2)) + "&deg;";
   }
